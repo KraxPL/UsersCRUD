@@ -26,29 +26,19 @@
 
 <%@ include file="/header.jsp" %>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-          <table style="width: 100%">
-            <tr>
-              <th>ID</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          <c:forEach items="${users}" var="personList">
-            <tr>
-              <td>${personList.id}</td>
-              <td>${personList.username}</td>
-              <td>${personList.email}</td>
-              <td><a href="/user/delete">Delete</a>
-                <a href="${pageContext.request.contextPath}/user/edit?id=${personList.id}">Edit</a>
-                <a href="/user/show">Show</a></td>
-            </tr>
-            </c:forEach>
+<form method="post" name="Edit User">
 
+  User Name<br>
+  <input type="text" name="userName" value="${username}"><br>
+  E-mail<br>
+  <input type="email" name="email" value="${email}"><br>
+  Password<br>
+  <input type="password" name="password" placeholder="input new password"><br>
+  <input type="submit" name="Submit"><br>
 
+</form>
 
-          <%@ include file="/footer.jsp" %>
+<%@ include file="/footer.jsp" %>
 
 </body>
 

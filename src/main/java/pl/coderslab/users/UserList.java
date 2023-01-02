@@ -1,5 +1,6 @@
 package pl.coderslab.users;
 
+import pl.coderslab.constant.Constant;
 import pl.coderslab.utils.UserDao;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/user/list")
+@WebServlet(Constant.MAIN_PAGE_WITH_USERS_LIST)
 public class UserList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao userDao = new UserDao();

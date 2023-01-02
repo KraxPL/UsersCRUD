@@ -50,7 +50,7 @@ public class UserDao {
         }
     }
 
-    public User read(int userId) {
+    public ArrayList<String> read(int userId) {
         String email = null;
         String username = null;
         String password = null;
@@ -62,7 +62,12 @@ public class UserDao {
                     email = rs.getString(1);
                     username = rs.getString(2);
                     password = rs.getString(3);
-                    System.out.println("email: " + email + ", username: " + username + ", password: " + password);
+                    ArrayList<String> arrayList = new ArrayList<>();
+                    arrayList.add(email);
+                    arrayList.add(username);
+                    arrayList.add(password);
+                    arrayList.add(String.valueOf(userId));
+                    return arrayList;
                 } else System.out.println("null");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -74,15 +79,9 @@ public class UserDao {
     }
 
     public void update(User user) {
-        System.out.println("Aktualne dane:");
-        read(user.getId());
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj nowy email:");
-        String mail = scanner.nextLine();
-        System.out.println("Podaj nowy userName: ");
-        String userName = scanner.nextLine();
-        System.out.println("Podaj nowe hasło: ");
-        String pass = scanner.nextLine();
+        String mail = user.getEmail();
+        String userName = user.getUsername();
+        String pass = user.getPassword();
 
         try (Connection connection = DbUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(Constant.UPDATE_USER);
