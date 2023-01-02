@@ -1,4 +1,4 @@
-package utils;
+package pl.coderslab.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
 
