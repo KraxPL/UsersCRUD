@@ -1,29 +1,13 @@
 package pl.coderslab.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
+import pl.coderslab.constant.Constant;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserDao {
-    private static final String ADD_USER = "INSERT INTO Workshop2.Users (email, username, password) VALUES (?, ?, ?)";
-    private static final String UPDATE_USER = "UPDATE Workshop2.Users SET email = ?, username = ?, password = ? WHERE id = ?";
-    private static final String SELECT_BY_ID = "SELECT email, username, password FROM Workshop2.Users WHERE id = ?";
-    private static final String DELETE_USER = "DELETE FROM Workshop2.Users WHERE id = ?";
-    private static final String SELECT_ALL_USERS = "SELECT * FROM Workshop2.Users";
-    public static final String CREATE_DATABASE =
-            "CREATE DATABASE IF NOT EXISTS Workshop2\n" +
-            "CHARACTER SET utf8mb4\n" +
-            "COLLATE utf8mb4_unicode_ci\n";
-    public static final String CREATE_TABLE =
-            "CREATE TABLE IF NOT EXISTS Workshop2.Users\n" +
-            "(\n" +
-            "    id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,\n" +
-            "    email VARCHAR(255) UNIQUE,\n" +
-            "    username VARCHAR(255) NOT NULL ,\n" +
-            "    password VARCHAR(255) NOT NULL\n" +
-            ")";
 
     public String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
@@ -33,7 +17,7 @@ public class UserDao {
 
         try (Connection conn = DbUtil.getConnection()) {
 
-            PreparedStatement statement = conn.prepareStatement(ADD_USER, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = conn.prepareStatement(Constant.ADD_USER, Statement.RETURN_GENERATED_KEYS);
 
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getUsername());
@@ -56,7 +40,7 @@ public class UserDao {
         String username = null;
         String password = null;
         try (Connection connection = DbUtil.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID);
+            PreparedStatement preparedStatement = connection.prepareStatement(Constant.SELECT_BY_ID);
             preparedStatement.setInt(1, userId);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
@@ -86,7 +70,7 @@ public class UserDao {
         String pass = scanner.nextLine();
 
         try (Connection connection = DbUtil.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER);
+            PreparedStatement preparedStatement = connection.prepareStatement(Constant.UPDATE_USER);
             preparedStatement.setInt(4, user.getId());
             preparedStatement.setString(1, mail);
             preparedStatement.setString(2, userName);
@@ -98,7 +82,7 @@ public class UserDao {
     }
     public void delete(int userId) {
         try (Connection connection = DbUtil.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER);
+            PreparedStatement preparedStatement = connection.prepareStatement(Constant.DELETE_USER);
             preparedStatement.setInt(1, userId);
             preparedStatement.execute();
             System.out.println("Użytkownik o id " + userId + " został usunięty z bazy użytkowników");
@@ -110,7 +94,7 @@ public class UserDao {
     public ArrayList<User> findAll() {
         ArrayList<User> list = new ArrayList<>(0);
         try (Connection connection = DbUtil.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);
+            PreparedStatement preparedStatement = connection.prepareStatement(Constant.SELECT_ALL_USERS);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 User user = new User();
