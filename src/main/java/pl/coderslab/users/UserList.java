@@ -17,6 +17,7 @@ public class UserList extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         userDao.CreateDatabase(); //creating database in case it does not exist yet WIP
+        userDao.CreateUsersTable(); // creating Users Table in case it does not exist yet
         getServletContext().getRequestDispatcher("/users/list.jsp")
                 .forward(request, response);
 
