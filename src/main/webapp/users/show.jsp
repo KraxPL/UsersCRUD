@@ -27,7 +27,7 @@
 <%@ include file="/header.jsp" %>
 
 <form method="post" name="Edit User">
-  <table style="width: 100%">
+  <table class="table" style="width: 100%">
     <tr>
       <th>ID</th>
       <th>${id}</th>

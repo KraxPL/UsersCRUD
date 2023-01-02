@@ -28,7 +28,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <table style="width: 100%">
+          <table class="table" style="width: 100%">
             <tr>
               <th>ID</th>
               <th>Username</th>
