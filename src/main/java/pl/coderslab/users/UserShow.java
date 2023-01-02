@@ -1,5 +1,6 @@
 package pl.coderslab.users;
 
+import pl.coderslab.constant.Constant;
 import pl.coderslab.utils.UserDao;
 
 import javax.servlet.RequestDispatcher;
@@ -15,13 +16,7 @@ import java.util.ArrayList;
 public class UserShow extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String strId = req.getParameter("id");
-        int intID = -1;
-        try {
-            intID = Integer.parseInt(strId);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+        int intID = Constant.getIntID(req);
 
         UserDao userDao = new UserDao();
         ArrayList<String> userData = userDao.read(intID);

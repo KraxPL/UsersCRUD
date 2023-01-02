@@ -40,7 +40,7 @@
               <td>${personList.id}</td>
               <td>${personList.username}</td>
               <td>${personList.email}</td>
-              <td><a href="/user/delete">Delete</a>
+              <td><a href="${pageContext.request.contextPath}/user/delete?id=${personList.id}">Delete</a>
                 <a href="${pageContext.request.contextPath}/user/edit?id=${personList.id}">Edit</a>
                 <a href="${pageContext.request.contextPath}/user/show?id=${personList.id}">Show</a></td>
             </tr>

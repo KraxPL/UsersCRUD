@@ -1,5 +1,7 @@
 package pl.coderslab.constant;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Constant {
     public static final String ADD_USER = "INSERT INTO Workshop3.Users (email, username, password) VALUES (?, ?, ?)";
     public static final String UPDATE_USER = "UPDATE Workshop3.Users SET email = ?, username = ?, password = ? WHERE id = ?";
@@ -22,4 +24,14 @@ public class Constant {
     public static final String DbUser = "root";
     public static final String DbPass = "coderslab";
     public static final String MAIN_PAGE_WITH_USERS_LIST = "/user/list";
+    public static int getIntID(HttpServletRequest req) {
+        String id = req.getParameter("id");
+        int intID = -1;
+        try {
+            intID = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return intID;
+    }
 }

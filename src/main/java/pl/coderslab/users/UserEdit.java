@@ -20,13 +20,7 @@ public class UserEdit extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
-        int intID = -1;
-        try {
-            intID = Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+        int intID = Constant.getIntID(req);
 
         UserDao userDao = new UserDao();
         ArrayList<String> userData = userDao.read(intID);
@@ -37,18 +31,13 @@ public class UserEdit extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
         String email = req.getParameter("email");
         String pass = req.getParameter("password");
-        String id = req.getParameter("id");
-        int intID = -1;
-        try {
-            intID = Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+        int intID = Constant.getIntID(req);
 
 
         UserDao userDao = new UserDao();
