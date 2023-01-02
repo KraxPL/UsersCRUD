@@ -28,6 +28,21 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+          <table style="width: 100%">
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
+          <c:forEach items="${users}" var="personList">
+            <tr>
+              <td>${personList.id}</td>
+              <td>${personList.username}</td>
+              <td>${personList.email}</td>
+              <td>Delete Edit Show</td>
+            </tr>
+            </c:forEach>
 
 
 
