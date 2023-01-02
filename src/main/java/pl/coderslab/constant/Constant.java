@@ -18,4 +18,7 @@ public class Constant {
                     "    username VARCHAR(255) NOT NULL ,\n" +
                     "    password VARCHAR(255) NOT NULL\n" +
                     ")";
+    public static final String DbURL = "jdbc:mysql://localhost:3306?useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    public static final String DbUser = "root";
+    public static final String DbPass = "coderslab";
 }

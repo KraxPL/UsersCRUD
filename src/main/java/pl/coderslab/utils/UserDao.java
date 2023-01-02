@@ -8,6 +8,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserDao {
+    public void CreateDatabase(){
+        try (Connection connection = DbUtil.connect()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(Constant.CREATE_DATABASE);
+            preparedStatement.execute();
+        } catch (SQLException e6) {
+            e6.printStackTrace();
+        }
+    }
 
     public String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
@@ -15,7 +23,7 @@ public class UserDao {
 
     public User create(User user) {
 
-        try (Connection conn = DbUtil.getConnection()) {
+        try (Connection conn = DbUtil.connect()) {
 
             PreparedStatement statement = conn.prepareStatement(Constant.ADD_USER, Statement.RETURN_GENERATED_KEYS);
 
@@ -39,7 +47,7 @@ public class UserDao {
         String email = null;
         String username = null;
         String password = null;
-        try (Connection connection = DbUtil.getConnection()) {
+        try (Connection connection = DbUtil.connect()) {
             PreparedStatement preparedStatement = connection.prepareStatement(Constant.SELECT_BY_ID);
             preparedStatement.setInt(1, userId);
             try (ResultSet rs = preparedStatement.executeQuery()) {
@@ -69,7 +77,7 @@ public class UserDao {
         System.out.println("Podaj nowe hasło: ");
         String pass = scanner.nextLine();
 
-        try (Connection connection = DbUtil.getConnection()) {
+        try (Connection connection = DbUtil.connect()) {
             PreparedStatement preparedStatement = connection.prepareStatement(Constant.UPDATE_USER);
             preparedStatement.setInt(4, user.getId());
             preparedStatement.setString(1, mail);
@@ -81,7 +89,7 @@ public class UserDao {
         }
     }
     public void delete(int userId) {
-        try (Connection connection = DbUtil.getConnection()) {
+        try (Connection connection = DbUtil.connect()) {
             PreparedStatement preparedStatement = connection.prepareStatement(Constant.DELETE_USER);
             preparedStatement.setInt(1, userId);
             preparedStatement.execute();
@@ -93,7 +101,7 @@ public class UserDao {
 
     public ArrayList<User> findAll() {
         ArrayList<User> list = new ArrayList<>(0);
-        try (Connection connection = DbUtil.getConnection()) {
+        try (Connection connection = DbUtil.connect()) {
             PreparedStatement preparedStatement = connection.prepareStatement(Constant.SELECT_ALL_USERS);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
