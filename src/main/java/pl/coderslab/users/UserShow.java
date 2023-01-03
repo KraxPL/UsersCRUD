@@ -20,9 +20,9 @@ public class UserShow extends HttpServlet {
 
         UserDao userDao = new UserDao();
         ArrayList<String> userData = userDao.read(intID);
-        req.setAttribute("email", userData.get(0));
-        req.setAttribute("username", userData.get(1));
-        req.setAttribute("id", userData.get(3));
+        req.setAttribute(Constant.EMAIL, userData.get(0));
+        req.setAttribute(Constant.USERNAME, userData.get(1));
+        req.setAttribute(Constant.ID, userData.get(3));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/users/show.jsp");
         dispatcher.forward(req, resp);

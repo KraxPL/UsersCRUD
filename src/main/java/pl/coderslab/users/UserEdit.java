@@ -24,8 +24,8 @@ public class UserEdit extends HttpServlet {
 
         UserDao userDao = new UserDao();
         ArrayList<String> userData = userDao.read(intID);
-        req.setAttribute("username", userData.get(1));
-        req.setAttribute("email", userData.get(0));
+        req.setAttribute(Constant.USERNAME, userData.get(1));
+        req.setAttribute(Constant.EMAIL, userData.get(0));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/users/edit.jsp");
         dispatcher.forward(req, resp);
@@ -35,8 +35,8 @@ public class UserEdit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
-        String email = req.getParameter("email");
-        String pass = req.getParameter("password");
+        String email = req.getParameter(Constant.EMAIL);
+        String pass = req.getParameter(Constant.PASSWORD);
         int intID = Constant.getIntID(req);
 
 
@@ -45,7 +45,7 @@ public class UserEdit extends HttpServlet {
         user.setId(intID);
         user.setUsername(userName);
         user.setEmail(email);
-        user.setPassword(userDao.hashPassword(pass));
+        user.setPassword(pass);
         userDao.update(user);
 
         resp.sendRedirect(Constant.MAIN_PAGE_WITH_USERS_LIST);

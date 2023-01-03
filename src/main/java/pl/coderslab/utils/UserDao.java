@@ -5,9 +5,9 @@ import pl.coderslab.constant.Constant;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserDao {
+
     public void CreateDatabase(){
         try (Connection connection = DbUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(Constant.CREATE_DATABASE);
@@ -112,10 +112,10 @@ public class UserDao {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 User user = new User();
-                user.setId(rs.getInt("id"));
-                user.setEmail(rs.getString("email"));
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
+                user.setId(rs.getInt(Constant.ID));
+                user.setEmail(rs.getString(Constant.EMAIL));
+                user.setUsername(rs.getString(Constant.USERNAME));
+                user.setPassword(rs.getString(Constant.PASSWORD));
                 list.add(user);
             }
         } catch (SQLException e5) {
