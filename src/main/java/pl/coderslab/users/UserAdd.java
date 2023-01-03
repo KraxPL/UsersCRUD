@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 
 @WebServlet (urlPatterns = "/user/add")
 public class UserAdd extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/users/add.jsp");
@@ -23,7 +24,7 @@ public class UserAdd extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName = req.getParameter(Constant.USERNAME);
+        String userName = req.getParameter(Constant.USER_NAME);
         String email = req.getParameter(Constant.EMAIL);
         String pass = req.getParameter(Constant.PASSWORD);
 
