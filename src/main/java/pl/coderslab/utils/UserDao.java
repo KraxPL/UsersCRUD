@@ -118,9 +118,6 @@ public class UserDao {
                 user.setPassword(rs.getString("password"));
                 list.add(user);
             }
-                for (User user1 : list) {
-                    System.out.println(user1);
-                }
         } catch (SQLException e5) {
             e5.printStackTrace();
         }

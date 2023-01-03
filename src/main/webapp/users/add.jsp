@@ -29,15 +29,31 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">UsersCRUD</h1>
+        <a href="/user/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Add new user</a>
+    </div>
+
 <form method="post" name="Add User">
 
-    User Name<br>
-    <input type="text" name="userName" placeholder="username"><br>
-    E-mail<br>
-    <input type="email" name="email" placeholder="email@email.com"><br>
-    Password<br>
-    <input type="password" name="password" placeholder="password"><br>
-    <input type="submit" name="Add new user"><br>
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter username">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
 
