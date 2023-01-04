@@ -25,7 +25,7 @@ public class Constant {
     public static final String DbPass = "coderslab";
     public static final String MAIN_PAGE_WITH_USERS_LIST = "/user/list";
     public static int getIntID(HttpServletRequest req) {
-        String id = req.getParameter("id");
+        String id = req.getParameter(ID);
         int intID = -1;
         try {
             intID = Integer.parseInt(id);
