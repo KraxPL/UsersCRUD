@@ -15,7 +15,6 @@ public class UserList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao userDao = new UserDao();
 
-        userDao.CreateDatabase(); //creating database in case it does not exist yet
         userDao.CreateUsersTable(); // creating Users Table in case it does not exist yet
         request.setAttribute("users", userDao.findAll());
         getServletContext().getRequestDispatcher("/users/list.jsp")
